@@ -1,0 +1,21 @@
+.upload-wrapper{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.inner-box{
+    padding: 75px;
+    border: 2px solid  rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.upload-btn{
+    width: 100%;
+    display: flex;
+    margin-bottom: 25px;
+
+}
