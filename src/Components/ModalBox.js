@@ -1,18 +1,15 @@
 import { Box, LinearProgress, Modal } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { URL } from "../API/API";
-import axios from "axios";
+
 import TableDisplay from "./Table";
 import { getOrder } from "../API/orderApi";
 
 function ModalBox({ id, openFlag, setOpenFlag }) {
   const [orderDetail, setOrderDetail] = useState();
-  const [open, setOpen] = useState(true);
 
   const getOrderDetail = async () => {
     const data = await getOrder(id);
-    console.log(data);
     setOrderDetail(data);
   };
 
@@ -27,7 +24,6 @@ function ModalBox({ id, openFlag, setOpenFlag }) {
       xs: 250,
     },
     bgcolor: "background.paper",
-    // border: "2px solid #000",
     borderRadius: 5,
     boxShadow: 24,
     p: 4,
@@ -39,7 +35,6 @@ function ModalBox({ id, openFlag, setOpenFlag }) {
   return (
     <Modal
       open={openFlag}
-      // onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -67,7 +62,7 @@ function ModalBox({ id, openFlag, setOpenFlag }) {
                 {orderDetail?.date.split(" ")[0]}
               </span>
             </h3>
-            <TableDisplay orderDetail={orderDetail} />
+            <TableDisplay orderDetail={orderDetail} flag={false} />
           </>
         ) : (
           <LinearProgress color="secondary" style={{ textAlign: "center" }} />

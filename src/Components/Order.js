@@ -24,7 +24,6 @@ function Order() {
     setData(order);
   };
   const handleInvoiceBtn = (invoiceData) => {
-    console.log(invoiceData);
     navigate("/invoice", { state: { id: invoiceData._id } });
   };
 

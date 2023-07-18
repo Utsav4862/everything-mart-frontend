@@ -1,4 +1,4 @@
-import { Button, Container, Grid, LinearProgress } from "@mui/material";
+import { Button, Container, LinearProgress } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getOrder } from "../API/orderApi";
@@ -15,7 +15,6 @@ function Invoice() {
   const getOrderDetail = async () => {
     setIsLoading(true);
     const data = await getOrder(id);
-    console.log(data);
     setOrderDetail(data);
     setIsLoading(false);
   };
@@ -40,7 +39,6 @@ function Invoice() {
     let day = dt.slice(3, 5);
     let year = dt.slice(6, 10);
     let d = new Date(year, month, day);
-    console.log(d);
     return months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
   };
 
@@ -48,7 +46,6 @@ function Invoice() {
     box: {
       backgroundColor: "#f1e7f9",
       width: "50%",
-      //   marginLeft: -20,
       marginTop: 10,
       padding: 20,
       borderRadius: 10,
@@ -113,7 +110,7 @@ function Invoice() {
                 <p>United States of Americe (USA)</p>
               </Container>
             </Container>
-            <TableDisplay orderDetail={orderDetail} />
+            <TableDisplay orderDetail={orderDetail} flag={true} />
           </Container>
           <ReactToPrint
             variant="outlined"
@@ -127,7 +124,7 @@ function Invoice() {
                   backgroundColor: "#2abd6e",
                 }}
               >
-                Print this out!
+                Print Invoice
               </Button>
             )}
             content={() => componentRef.current}

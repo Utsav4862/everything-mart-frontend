@@ -22,7 +22,7 @@ function Upload() {
 
   const uploadCSV = async () => {
     setIsProgress(true);
-    console.log(file);
+
     let fd = new FormData();
     fd.append("file", file);
 
@@ -36,7 +36,6 @@ function Upload() {
     let { data } = await axios.post(`${URL}/order/upload`, fd, config);
     setIsProgress(false);
     navigate("/orders", { state: { orders: data } });
-    console.log(data);
   };
   return (
     <>
@@ -72,7 +71,7 @@ function Upload() {
 
               width: "100%",
             }}
-            disabled={file == undefined ? true : false}
+            disabled={file === undefined ? true : false}
             onClick={uploadCSV}
           >
             Submit

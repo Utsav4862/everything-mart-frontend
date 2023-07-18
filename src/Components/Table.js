@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 
-function TableDisplay({ orderDetail }) {
+function TableDisplay({ orderDetail, flag }) {
   const styles = {
     cell: {
       fontSize: 18,
@@ -22,8 +22,8 @@ function TableDisplay({ orderDetail }) {
   };
 
   return (
-    <TableContainer style={{ marginTop: 25 }}>
-      <Table sx={{ minWidth: 650 }}>
+    <TableContainer style={{ marginTop: 25, borderRadius: 15 }}>
+      <Table sx={{ minWidth: 650 }} style={{ borderRadius: 30 }}>
         <TableHead>
           <TableRow style={{ backgroundColor: "#8056c4" }}>
             <TableCell align="center" style={styles.head}>
@@ -49,7 +49,7 @@ function TableDisplay({ orderDetail }) {
               key={it._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               style={{
-                backgroundColor: (i + 1) % 2 == 0 ? "#f1e7f9" : "",
+                backgroundColor: (i + 1) % 2 === 0 ? "#f1e7f9" : "",
               }}
             >
               <TableCell
@@ -74,14 +74,18 @@ function TableDisplay({ orderDetail }) {
               </TableCell>
             </TableRow>
           ))}
-          <TableRow>
-            <TableCell colspan="3" r align="right">
-              <h2>Total (USD)</h2>
-            </TableCell>
-            <TableCell colspan="2" align="right" style={{ paddingRight: 5 }}>
-              <h2>$ {orderDetail?.amount.toFixed(2)}</h2>
-            </TableCell>
-          </TableRow>
+          {flag ? (
+            <TableRow>
+              <TableCell colspan="3" r align="right">
+                <h2>Total (USD)</h2>
+              </TableCell>
+              <TableCell colspan="2" align="right" style={{ paddingRight: 5 }}>
+                <h2>$ {orderDetail?.amount.toFixed(2)}</h2>
+              </TableCell>
+            </TableRow>
+          ) : (
+            ""
+          )}
         </TableBody>
       </Table>
     </TableContainer>
